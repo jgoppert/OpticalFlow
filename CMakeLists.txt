@@ -118,7 +118,7 @@ INSTALL(
   DESTINATION include)
 
 INSTALL(
-  FILES ${CMAKE_BINARY_DIR}/FindOpticalFlow.cmake
+  FILES ${CMAKE_CURRENT_BINARY_DIR}/FindOpticalFlow.cmake
   DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 # vim: set et fenc=utf-8 ff=unix sts=0 sw=2 ts=2 : */
