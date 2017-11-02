@@ -60,41 +60,41 @@ add_subdirectory( external/klt_feature_tracker klt_feature_tracker )
 set( klt_feature_tracker_LIBS "klt_feature_tracker" )
 
 if(OpenCV_FOUND AND OPENCV)
-    message(STATUS "Building ${PROJECT_NAME} with OpenCV")
+  message(STATUS "Building ${PROJECT_NAME} with OpenCV")
 
-    set(OpticalFlow_INCLUDE_DIRS
-      ${CMAKE_CURRENT_SOURCE_DIR}/include
-      ${klt_feature_tracker_INCLUDE_DIRS}
-      ${OpenCV_INCLUDE_DIRS}
-    )
+  set(OpticalFlow_INCLUDE_DIRS
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${klt_feature_tracker_INCLUDE_DIRS}
+    ${OpenCV_INCLUDE_DIRS}
+  )
 
-    include_directories(OpticalFlow_INCLUDE_DIRS)
+  include_directories(OpticalFlow_INCLUDE_DIRS)
 
-    add_library( OpticalFlow SHARED
-      src/optical_flow.cpp
-      src/px4flow.cpp
-     	src/flow_px4.cpp
-    	src/flow_opencv.cpp
-    )
+  add_library( OpticalFlow SHARED
+    src/optical_flow.cpp
+    src/px4flow.cpp
+    src/flow_px4.cpp
+    src/flow_opencv.cpp
+  )
 
-    target_link_libraries( OpticalFlow
-      ${OpenCV_LIBS}
-      ${klt_feature_tracker_LIBS}
-    )
+  target_link_libraries( OpticalFlow
+    ${OpenCV_LIBS}
+    ${klt_feature_tracker_LIBS}
+  )
 else()
-    message(STATUS "Building ${PROJECT_NAME} without OpenCV")
+  message(STATUS "Building ${PROJECT_NAME} without OpenCV")
 
-    set(OpticalFlow_INCLUDE_DIRS
-      ${CMAKE_CURRENT_SOURCE_DIR}/include
-    )
+  set(OpticalFlow_INCLUDE_DIRS
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+  )
 
-    include_directories(OpticalFlow_INCLUDE_DIRS)
+  include_directories(OpticalFlow_INCLUDE_DIRS)
 
-    add_library( OpticalFlow SHARED
-      src/optical_flow.cpp
-      src/px4flow.cpp
-     	src/flow_px4.cpp
-    )
+  add_library( OpticalFlow SHARED
+    src/optical_flow.cpp
+    src/px4flow.cpp
+    src/flow_px4.cpp
+  )
 
 endif()
 
@@ -120,3 +120,5 @@ INSTALL(
 INSTALL(
   FILES ${CMAKE_BINARY_DIR}/FindOpticalFlow.cmake
   DESTINATION ${CMAKE_INSTALL_PREFIX})
+
+# vim: set et fenc=utf-8 ff=unix sts=0 sw=2 ts=2 : */
